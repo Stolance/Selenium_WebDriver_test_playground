@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class WebSiteTest {
+public class Amazon {
 
     private WebDriver driver;
 
