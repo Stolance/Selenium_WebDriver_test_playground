@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Amazon {
+public class Amazon  {
 
     private WebDriver driver;
 
@@ -25,7 +25,8 @@ public class Amazon {
     }
 
     @Test
-    public void CheckThatZeroItemsFound() throws InterruptedException {
+    @DisplayName("Check that zero products found by ahsdvbaksjdvbhasdbhashdb request")
+    public void ZeroItemsFound() throws InterruptedException {
         driver.findElement(By.xpath("//*[@id='twotabsearchtextbox']")).sendKeys("ahsdvbaksjdvbhasdbhashdb");
         Thread.sleep(300);
         driver.findElement(By.xpath("//*[@id='nav-search-submit-button']")).click();
@@ -38,7 +39,8 @@ public class Amazon {
     }
 
     @Test
-    public void CheckThatNameOfTheProductIsInEveryResult() throws InterruptedException {
+    @DisplayName("Check that 'knife' is in every search result")
+    public void InEveryResult() throws InterruptedException {
         String value = "knife";
         driver.findElement(By.xpath("//*[@id='twotabsearchtextbox']")).sendKeys(value);
         Thread.sleep(300);
@@ -51,7 +53,8 @@ public class Amazon {
     }
 
     @Test
-    public void CheckThatSortByFunctionWorkingCorrectly() throws InterruptedException {
+    @DisplayName("Check that sort by function is working correctly")
+    public void SortByFunction() throws InterruptedException {
         String value = "knife";
         driver.findElement(By.xpath("//*[@id='twotabsearchtextbox']")).sendKeys(value);
         Thread.sleep(300);
@@ -61,7 +64,7 @@ public class Amazon {
         Thread.sleep(50);
         driver.findElement(By.xpath("//*[@id='s-result-sort-select_1' and contains(@class, 'a-dropdown-link')]")).click();
         List<WebElement> listOfSortedPrices = driver.findElements(By.xpath("//*[@class='a-price']"));
-        List<Float> listOfPrices = new ArrayList<Float>();
+        List<Float> listOfPrices = new ArrayList<>();
         for (WebElement e: listOfSortedPrices) {
             listOfPrices.add(Float.parseFloat(e.getText().substring(1, 6)));
         }
@@ -71,7 +74,8 @@ public class Amazon {
     }
 
     @Test
-    public void CheckIncorrectSignInValues() throws InterruptedException {
+    @DisplayName("Check that error message shown if sign in values is incorrect")
+    public void IncorrectSignInValues() throws InterruptedException {
         driver.findElement(By.xpath("//a[@class='nav-a nav-a-2   nav-progressive-attribute']")).click();
         driver.findElement(By.xpath("//*[@class='a-input-text a-span12 auth-autofocus auth-required-field']")).sendKeys("ashdiashd@asdasd.aosuie");
         driver.findElement(By.xpath("//div[@class='a-section']/span[1]")).click();
