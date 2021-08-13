@@ -7,6 +7,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Leafground {
+public class Leafground_EDIT {
 
     private WebDriver driver;
 
@@ -42,7 +43,29 @@ public class Leafground {
         driver.findElement(By.xpath("//div[@class = 'large-6 small-12 columns']//*[@type = 'text']//following::input[1]")).sendKeys(Keys.TAB);
     }
 
+    @Test
+    @DisplayName("Check that default text entered")
+    public void DefaultTextEntered () throws InterruptedException {
+        String value = "TestLeaf";
+        driver.findElement(By.xpath("//a[@href = 'pages/Edit.html']")).click();
+        driver.findElement(By.xpath("//*[@class = 'large-6 small-12 columns']//*[@type = 'text' and @value = 'TestLeaf']"))
+                .getText().contentEquals(value);
+    }
 
+    @Test
+    @DisplayName("Check that user can clear the text")
+    public void ClearTheText () throws InterruptedException {
+        driver.findElement(By.xpath("//a[@href = 'pages/Edit.html']")).click();
+        driver.findElement(By.xpath("//*[@class = 'large-6 small-12 columns']//*[@type = 'text' and @value = 'Clear me!!']"))
+                .clear();
+    }
+
+    @Test
+    @DisplayName("Check that edit field is disabled")
+    public void FieldIsDisabled () throws InterruptedException {
+        driver.findElement(By.xpath("//a[@href = 'pages/Edit.html']")).click();
+        driver.findElement(By.xpath("//*[@class = 'large-6 small-12 columns']//input[@style = 'width:350px;background-color:LightGrey;']")).isEnabled();
+    }
 
     @AfterEach
     public void shutdown() {driver.close();}
