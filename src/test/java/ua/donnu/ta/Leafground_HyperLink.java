@@ -56,8 +56,15 @@ public class Leafground_HyperLink {
     @DisplayName("Interact with the same link name")
     public void SameLinkName() throws InterruptedException {
         driver.findElement(By.xpath("//a[@href = 'pages/Link.html']")).click();
-        driver.findElement(By.xpath("//a[@href = '../home.html']//following::label"));
+        driver.findElement(By.xpath("//div[@class = 'row']//following-sibling::label//parent::div//a"));
+    }
 
+    @Test
+    @DisplayName("How many links are available in this page")
+    public void HowManyLinks() throws InterruptedException {
+        driver.findElement(By.xpath("//a[@href = 'pages/Link.html']")).click();
+        List <WebElement> Links = driver.findElements(By.tagName("a"));
+        System.out.println(Links.stream().count());
     }
 
     @AfterEach
