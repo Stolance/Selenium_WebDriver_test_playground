@@ -4,6 +4,10 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
 
 public class Leafground_DropDown {
 
@@ -45,8 +49,19 @@ public class Leafground_DropDown {
     @DisplayName("Get the number of dropdown options")
     public void NumberOfDropdownOprtions() throws InterruptedException {
         driver.findElement(By.xpath("//a[@href = 'pages/Dropdown.html']")).click();
-        WebElement NumberOfOptions = driver.findElement(By.xpath("//*[@class = 'dropdown']"));
+        Select NumberOfOptions = new Select(driver.findElement(By.xpath("//*[@class = 'dropdown']")));
+        List<WebElement> NumOfOp = NumberOfOptions.getOptions();
+        System.out.println("NumOfOp = " + NumOfOp.size());
+    }
 
+    @Test
+    @DisplayName("Select training program using sendKeys")
+    public void UsingSendKeys() throws InterruptedException {
+        driver.findElement(By.xpath("//a[@href = 'pages/Dropdown.html']")).click();
+        driver.findElement(By.xpath("//*[contains(text(), 'You can also use sendKeys to select')]//parent::select")).click();
+        WebElement DropBox = driver.findElement(By.xpath("//*[contains(text(), 'You can also use sendKeys to select')]//parent::select"));
+        DropBox.sendKeys(Keys.ARROW_DOWN);
+        DropBox.sendKeys(Keys.ENTER);
     }
 
     @AfterEach

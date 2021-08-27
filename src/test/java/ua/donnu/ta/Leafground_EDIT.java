@@ -48,16 +48,14 @@ public class Leafground_EDIT {
     public void DefaultTextEntered () throws InterruptedException {
         String value = "TestLeaf";
         driver.findElement(By.xpath("//a[@href = 'pages/Edit.html']")).click();
-        driver.findElement(By.xpath("//*[@class = 'large-6 small-12 columns']//*[@type = 'text' and @value = 'TestLeaf']"))
-                .getText().contentEquals(value);
+        driver.findElement(By.xpath("//*[@class = 'large-6 small-12 columns']//*[@type = 'text' and @value = 'TestLeaf']")).getText().contentEquals(value);
     }
 
     @Test
     @DisplayName("Check that user can clear the text")
     public void ClearTheText () throws InterruptedException {
         driver.findElement(By.xpath("//a[@href = 'pages/Edit.html']")).click();
-        driver.findElement(By.xpath("//*[@class = 'large-6 small-12 columns']//*[@type = 'text' and @value = 'Clear me!!']"))
-                .clear();
+        driver.findElement(By.xpath("//*[@class = 'large-6 small-12 columns']//*[@type = 'text' and @value = 'Clear me!!']")).clear();
     }
 
     @Test
